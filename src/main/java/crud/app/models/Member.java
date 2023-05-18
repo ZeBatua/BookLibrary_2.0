@@ -4,6 +4,8 @@ public class Member {
     public String name;
     public String BirthDay;
 
+    public Member(){}
+
     public Member(String name, String birthDay) {
         this.name = name;
         BirthDay = birthDay;
