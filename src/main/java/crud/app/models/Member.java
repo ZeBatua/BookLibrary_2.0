@@ -3,14 +3,14 @@ package crud.app.models;
 public class Member {
     private int id;
     public String name;
-    public String BirthDay;
+    public String birthDay;
 
     public Member(){}
 
     public Member(int id, String name, String birthDay) {
         this.id = id;
         this.name = name;
-        BirthDay = birthDay;
+        this.birthDay = birthDay;
     }
 
     public int getId() {
@@ -30,10 +30,10 @@ public class Member {
     }
 
     public String getBirthDay() {
-        return BirthDay;
+        return birthDay;
     }
 
     public void setBirthDay(String birthDay) {
-        BirthDay = birthDay;
+        this.birthDay = birthDay;
     }
 }

@@ -22,9 +22,9 @@ public class MemberDAO {
         return jdbcTemplate.query("SELECT * FROM Member", new BeanPropertyRowMapper<>(Member.class));
     }
 
-    public Optional<Member> show(String id) {
+    public Member show(int id) {
         return jdbcTemplate.query("SELECT * FROM Member WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Member.class))
-                .stream().findAny();
+                .stream().findAny().orElse(null);
     }
 
     public void create(Member member) {
