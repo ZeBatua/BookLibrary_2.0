@@ -8,14 +8,16 @@
 <body>
 
 <div th:each="member : ${memberList}">
-  <a th:href="@{/members/{id}(id=${member.getId()})}"
+  <a th:href="@{/library/members/{id}(id=${member.getId()})}"
      th:text="${member.getName() + ', ' + member.getBirthDay()}">memberInfo</a>
 </div>
 
 <br/>
 <hr/>
 
-<a th:href="@{/WEB-INF/views/library}">View library</a>
+<a th:href="@{/library/members/new}">Add new member!</a>
+<hr/>
+<a th:href="@{/library/books}">View library</a>
 
 
 </body>

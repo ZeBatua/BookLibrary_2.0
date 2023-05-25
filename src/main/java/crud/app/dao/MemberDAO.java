@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class MemberDAO {
@@ -18,16 +17,16 @@ public class MemberDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Member> index() {
+    public List<Member> listMember() {
         return jdbcTemplate.query("SELECT * FROM Member", new BeanPropertyRowMapper<>(Member.class));
     }
 
-    public Member show(int id) {
+    public Member info(int id) {
         return jdbcTemplate.query("SELECT * FROM Member WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Member.class))
                 .stream().findAny().orElse(null);
     }
 
-    public void create(Member member) {
+    public void create(Member member) { // same
         jdbcTemplate.update("INSERT INTO member(name, birthDay) VALUES (?, ?)", member.getName(), member.getBirthDay());
     }
 
@@ -39,6 +38,5 @@ public class MemberDAO {
     public void delete(int id) {
         jdbcTemplate.update("DELETE FROM member WHERE id=?", id);
     }
-
 
 }

@@ -2,11 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit member</title>
+    <title>New member</title>
 </head>
 <body>
 
-<form th:method="PATCH" th:action="@{/library/members/{id}(id=${member.getId()})}" th:object="${member}">
+<form th:method="POST" th:action="@{/library/members}" th:object="${member}">
     <label for="name">Enter name: </label>
     <input type="text" th:field="*{name}" id="name"/>
     <!--  <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>-->
@@ -15,7 +15,7 @@
     <input type="text" th:field="*{birthDay}" id="birthDay"/>
     <!--  <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</div>-->
     <br/>
-    <input type="submit" value="Update member info!"/>
+    <input type="submit" value="Add new member!"/>
 </form>
 
 </body>
