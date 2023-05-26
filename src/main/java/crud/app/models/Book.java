@@ -1,26 +1,36 @@
 package crud.app.models;
 
 public class Book {
-    private int id;
+    private int book_id;
+    private int member_id;
     private String name;
     private String author;
     private int year;
 
     public Book(){};
 
-    public Book(int id, String name, String author, int year) {
-        this.id = id;
+    public Book(int book_id, int member_id, String name, String author, int year) {
+        this.book_id = book_id;
+        this.member_id = member_id;
         this.name = name;
         this.author = author;
         this.year = year;
     }
 
-    public int getId() {
-        return id;
+    public int getBook_id() {
+        return book_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
+    }
+
+    public int getMember_id() {
+        return member_id;
+    }
+
+    public void setMember_id(int member_id) {
+        this.member_id = member_id;
     }
 
     public String getName() {

@@ -18,7 +18,7 @@ public class MemberController {
     }
 
     @GetMapping()
-    public String listMember(Model model) {
+    public String memberList(Model model) {
         model.addAttribute("memberList", memberDAO.listMember());
         return "library/member/list";
     }
@@ -30,7 +30,7 @@ public class MemberController {
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
+    public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("member", memberDAO.info(id));
         return "library/member/edit";
     }

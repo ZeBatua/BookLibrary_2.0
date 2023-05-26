@@ -21,8 +21,8 @@ public class MemberDAO {
         return jdbcTemplate.query("SELECT * FROM Member", new BeanPropertyRowMapper<>(Member.class));
     }
 
-    public Member info(int id) {
-        return jdbcTemplate.query("SELECT * FROM Member WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Member.class))
+    public Member info(int member_id) {
+        return jdbcTemplate.query("SELECT * FROM Member WHERE member_id=?", new Object[]{member_id}, new BeanPropertyRowMapper<>(Member.class))
                 .stream().findAny().orElse(null);
     }
 
@@ -30,13 +30,13 @@ public class MemberDAO {
         jdbcTemplate.update("INSERT INTO member(name, birthDay) VALUES (?, ?)", member.getName(), member.getBirthDay());
     }
 
-    public void update(int id, Member memberToUpdate) {
-        jdbcTemplate.update("UPDATE member SET name=?, birthDay=? WHERE id=?", memberToUpdate.getName(),
-                memberToUpdate.getBirthDay(), id);
+    public void update(int member_id, Member memberToUpdate) {
+        jdbcTemplate.update("UPDATE Member SET name=?, birthday=? WHERE member_id=?", memberToUpdate.getName(),
+                memberToUpdate.getBirthDay(), member_id);
     }
 
-    public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM member WHERE id=?", id);
+    public void delete(int member_id) {
+        jdbcTemplate.update("DELETE FROM member WHERE member_id=?", member_id);
     }
 
 }

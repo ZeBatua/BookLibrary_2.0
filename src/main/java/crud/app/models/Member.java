@@ -1,24 +1,24 @@
 package crud.app.models;
 
 public class Member {
-    private int id;
+    private int member_id;
     public String name;
-    public String birthDay;
+    public int birthDay;
 
     public Member(){}
 
-    public Member(int id, String name, String birthDay) {
-        this.id = id;
+    public Member(int member_id, String name, int birthDay) {
+        this.member_id = member_id;
         this.name = name;
         this.birthDay = birthDay;
     }
 
-    public int getId() {
-        return id;
+    public int getMember_id() {
+        return member_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setMember_id(int member_id) {
+        this.member_id = member_id;
     }
 
     public String getName() {
@@ -29,11 +29,11 @@ public class Member {
         this.name = name;
     }
 
-    public String getBirthDay() {
+    public int getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(String birthDay) {
+    public void setBirthDay(int birthDay) {
         this.birthDay = birthDay;
     }
 }

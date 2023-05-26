@@ -19,7 +19,7 @@ public class BookController {
     }
 
     @GetMapping()
-    public String listBook(Model model) {
+    public String bookList(Model model) {
         model.addAttribute("bookList", bookDAO.listBook());
         return "library/book/list";
     }

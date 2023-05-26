@@ -5,16 +5,17 @@
   <title>Member info</title>
 </head>
 <body>
+<p th:text="${'ID: ' + member.getMember_id()}">VALUE</p>
 <p th:text="${'Name: ' + member.getName()}">VALUE</p>
 <p th:text="${'Birthday: ' + member.getBirthDay()}">VALUE</p>
 
 <!--<a th:href="@{/people/{id}/edit(id=${book.getId()})}">Edit</a>-->
 
-<br/>
+<hr/>
 
-<a th:href="@{/library/members/{id}/edit(id=${member.getId()})}">Edit</a>
+<a th:href="@{/library/members/{id}/edit(id=${member.getMember_id()})}">Edit</a>
 
-<form th:method="DELETE" th:action="@{/library/members/{id}(id=${member.getId()})}">
+<form th:method="DELETE" th:action="@{/library/members/{id}(id=${member.getMember_id()})}">
   <input type="submit" value="Delete"/>
 </form>
 
