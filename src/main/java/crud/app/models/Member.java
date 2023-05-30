@@ -2,8 +2,8 @@ package crud.app.models;
 
 public class Member {
     private int member_id;
-    public String name;
-    public int birthDay;
+    private String name;
+    private int birthDay;
 
     public Member(){}
 

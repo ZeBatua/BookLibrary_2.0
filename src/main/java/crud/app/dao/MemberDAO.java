@@ -1,5 +1,6 @@
 package crud.app.dao;
 
+import crud.app.models.Book;
 import crud.app.models.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -37,6 +38,11 @@ public class MemberDAO {
 
     public void delete(int member_id) {
         jdbcTemplate.update("DELETE FROM member WHERE member_id=?", member_id);
+    }
+
+    public List<Book> getBooksByPersonId(int member_id) {
+        return jdbcTemplate.query("SELECT * FROM Book WHERE member_id = ?", new Object[]{member_id},
+                new BeanPropertyRowMapper<>(Book.class));
     }
 
 }

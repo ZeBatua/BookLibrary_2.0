@@ -26,6 +26,7 @@ public class MemberController {
     @GetMapping("/{id}")
     public String info(@PathVariable("id") int id, Model model) {
         model.addAttribute("member", memberDAO.info(id));
+        model.addAttribute("books", memberDAO.getBooksByPersonId(id));
         return "library/member/info";
     }
 
@@ -57,5 +58,8 @@ public class MemberController {
         memberDAO.delete(id);
         return "redirect:/library/members";
     }
+
+
+
 
 }
