@@ -12,12 +12,17 @@
        th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYear()}">bookInfo</a>
 </div>
 
-<br/>
 <hr/>
 
-<a th:href="@{/library/books/new}">Add new book!</a>
-<hr/>
-<a th:href="@{/library/members}">View members</a>
+<form th:method="GET" th:action="@{/library/books/new}">
+    <input type="submit" value="Добавить книгу"/>
+</form>
+
+<br/>
+
+<form th:method="GET" th:action="@{/library/members}">
+    <input type="submit" value="Смотреть пользователей"/>
+</form>
 
 </body>
 </html>

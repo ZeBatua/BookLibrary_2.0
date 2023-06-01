@@ -12,13 +12,18 @@
      th:text="${member.getName() + ', ' + member.getBirthDay()}">memberInfo</a>
 </div>
 
+<hr/>
+
+
+<form th:method="GET" th:action="@{/library/members/new}">
+  <input type="submit" value="Добавить пользователя"/>
+</form>
+
 <br/>
-<hr/>
 
-<a th:href="@{/library/members/new}">Add new member!</a>
-<hr/>
-<a th:href="@{/library/books}">View library</a>
-
+<form th:method="GET" th:action="@{/library/books}">
+  <input type="submit" value="Смотреть книги"/>
+</form>
 
 </body>
 </html>

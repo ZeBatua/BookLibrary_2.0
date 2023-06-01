@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>New member</title>
+    <title>New book</title>
 </head>
 <body>
 
@@ -19,7 +19,7 @@
     <input type="text" th:field="*{year}" id="year"/>
     <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">year Error</div>
     <br/>
-    <input type="submit" value="Add new book!"/>
+    <input type="submit" value="Добавить!"/>
 </form>
 
 </body>

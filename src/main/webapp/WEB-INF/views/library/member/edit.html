@@ -14,8 +14,8 @@
     <label for="birthDay">Enter Birthday: </label>
     <input type="text" th:field="*{birthDay}" id="birthDay"/>
     <div style="color:red" th:if="${#fields.hasErrors('birthDay')}" th:errors="*{birthDay}">birthDay Error</div>
-    <br/>
-    <input type="submit" value="Update member info!"/>
+    <hr/>
+    <input type="submit" value="Обновить данные!"/>
 </form>
 
 </body>

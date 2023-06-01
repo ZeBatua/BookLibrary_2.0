@@ -5,9 +5,8 @@
   <title>Member info</title>
 </head>
 <body>
-<p th:text="${'ID: ' + member.getMember_id()}">VALUE</p>
-<p th:text="${'Name: ' + member.getName()}">VALUE</p>
-<p th:text="${'Birthday: ' + member.getBirthDay()}">VALUE</p>
+<p th:text="${'ФИО: ' + member.getName()}">VALUE</p>
+<p th:text="${'Дата рождения: ' + member.getBirthDay()}">VALUE</p>
 
 <div th:if="${books.isEmpty()}">
   <p>Человек пока не взял ни одной книги</p>
@@ -24,11 +23,12 @@
   <hr/>
 </div>
 
-
-<a th:href="@{/library/members/{id}/edit(id=${member.getMember_id()})}">Edit</a>
-
+<form th:method="GET" th:action="@{/library/members/{id}/edit(id=${member.getMember_id()})}">
+  <input type="submit" value="Редактировать"/>
+</form>
+<br/>
 <form th:method="DELETE" th:action="@{/library/members/{id}(id=${member.getMember_id()})}">
-  <input type="submit" value="Delete"/>
+  <input type="submit" value="Удалить"/>
 </form>
 
 </body>
