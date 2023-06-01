@@ -1,7 +1,7 @@
 package crud.app.models;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class Member {
@@ -11,12 +11,13 @@ public class Member {
     @Size(min = 2, max = 100, message = "Имя должно содержать от 2 до 100 символов")
     private String name;
 
-    @Min(value = 1900, message = "Год рождения должен быть больше, чем 1900")
-    private int birthDay;
+    @Pattern(regexp = "[0-9]{2}\\.[0-9]{2}\\.[0-9]{4}", message = "Используйте формат MM.DD.YYYY")
+    private String birthDay;
 
-    public Member(){}
+    public Member() {
+    }
 
-    public Member(int member_id, String name, int birthDay) {
+    public Member(int member_id, String name, String birthDay) {
         this.member_id = member_id;
         this.name = name;
         this.birthDay = birthDay;
@@ -38,11 +39,11 @@ public class Member {
         this.name = name;
     }
 
-    public int getBirthDay() {
+    public String getBirthDay() {
         return birthDay;
     }
 
-    public void setBirthDay(int birthDay) {
+    public void setBirthDay(String birthDay) {
         this.birthDay = birthDay;
     }
 }
