@@ -1,8 +1,17 @@
 package crud.app.models;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 public class Member {
     private int member_id;
+
+    @NotEmpty(message = "Имя не может быть пустым")
+    @Size(min = 2, max = 100, message = "Имя должно содержать от 2 до 100 символов")
     private String name;
+
+    @Min(value = 1900, message = "Год рождения должен быть больше, чем 1900")
     private int birthDay;
 
     public Member(){}

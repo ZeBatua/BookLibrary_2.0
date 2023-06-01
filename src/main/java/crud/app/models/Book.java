@@ -1,9 +1,21 @@
 package crud.app.models;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 public class Book {
     private int book_id;
+
+    @NotEmpty(message = "Название книги не может быть пустым")
+    @Size(min = 2, max = 100, message = "Навзание должно содержать от 2 до 100 символов")
     private String name;
+
+    @NotEmpty(message = "Имя не может быть пустым")
+    @Size(min = 2, max = 100, message = "Имя должно содержать от 2 до 100 символов")
     private String author;
+
+    @Min(value = 1900, message = "Год рождения должен быть больше, чем 1900")
     private int year;
 
     public Book(){};

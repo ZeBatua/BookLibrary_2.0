@@ -2,8 +2,11 @@ package crud.app.controllers;
 
 import crud.app.dao.MemberDAO;
 import crud.app.models.Member;
+import crud.app.util.MemberValidator;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -11,10 +14,11 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
 
     private final MemberDAO memberDAO;
-//    private final PersonValidator personValidator;
+    private final MemberValidator memberValidator;
 
-    public MemberController(MemberDAO memberDAO) {
+    public MemberController(MemberDAO memberDAO, MemberValidator memberValidator) {
         this.memberDAO = memberDAO;
+        this.memberValidator = memberValidator;
     }
 
     @GetMapping()
@@ -37,7 +41,13 @@ public class MemberController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("member") Member member, @PathVariable("id") int id) {
+    public String update(@ModelAttribute("member") @Valid Member member, BindingResult bindingResult,
+                         @PathVariable("id") int id) {
+        member.setMember_id(id);
+
+        if (bindingResult.hasErrors())
+            return "/library/member/edit";
+
         memberDAO.update(id, member);
         return "redirect:/library/members";
     }
@@ -48,7 +58,13 @@ public class MemberController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("member") Member member) {
+    public String create(@ModelAttribute("member") @Valid Member member,
+                         BindingResult bindingResult) {
+        memberValidator.validate(member, bindingResult);
+
+        if (bindingResult.hasErrors())
+            return "library/member/new";
+
         memberDAO.create(member);
         return "redirect:/library/members";
     }
@@ -58,8 +74,5 @@ public class MemberController {
         memberDAO.delete(id);
         return "redirect:/library/members";
     }
-
-
-
 
 }

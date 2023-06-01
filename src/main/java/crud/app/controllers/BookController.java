@@ -4,8 +4,10 @@ import crud.app.dao.BookDAO;
 import crud.app.dao.MemberDAO;
 import crud.app.models.Book;
 import crud.app.models.Member;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -16,8 +18,6 @@ public class BookController {
 
     private final BookDAO bookDAO;
     private final MemberDAO memberDAO;
-//    private final PersonValidator personValidator;
-
 
     public BookController(BookDAO bookDAO, MemberDAO memberDAO) {
         this.bookDAO = bookDAO;
@@ -51,7 +51,13 @@ public class BookController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("book") Book book, @PathVariable("id") int id) {
+    public String update(@ModelAttribute("book") @Valid Book book, BindingResult bindingResult,
+                         @PathVariable("id") int id) {
+        book.setBook_id(id);
+
+        if (bindingResult.hasErrors())
+            return "/library/book/edit";
+
         bookDAO.update(id, book);
         return "redirect:/library/books";
     }
@@ -62,7 +68,11 @@ public class BookController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("book") Book book) {
+    public String create(@ModelAttribute("book") @Valid Book book,
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "/library/book/new";
+
         bookDAO.create(book);
         return "redirect:/library/books";
     }
