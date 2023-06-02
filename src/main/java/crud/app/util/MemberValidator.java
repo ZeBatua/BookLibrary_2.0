@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+// Класс задача которого проверить пользователя с таким же ФИО
 @Component
 public class MemberValidator implements Validator {
 
