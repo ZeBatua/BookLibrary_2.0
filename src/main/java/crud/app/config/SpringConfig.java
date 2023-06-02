@@ -22,7 +22,7 @@ import java.util.Objects;
 @Configuration
 @ComponentScan("crud.app")
 @EnableWebMvc
-@PropertySource("classpath:database.properties")
+@PropertySource("classpath:database.properties.origin")
 public class SpringConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
