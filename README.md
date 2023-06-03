@@ -44,10 +44,4 @@
    * user=postgres (username в PostgreSQL)
    * password=postgres (password)
 9) Перейдите в файл src/main/sql/dataBaseInfo.sql и запустите sql код, создающий 2 таблицы и данные для них.
-10) Проект готов к запуску. Нажмите Shift+F10.
-
-
-driver=org.postgresql.Driver
-url=jdbc:postgresql://localhost:5432/BooksLibrary
-user=postgres
-password=123
+10) Проект готов к запуску. Нажмите Shift+F10
