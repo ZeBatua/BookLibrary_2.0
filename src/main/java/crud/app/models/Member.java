@@ -30,7 +30,6 @@ public class Member {
     @Email(message = "Используйте стандартные форматы email")
     private String email;
 
-
     @OneToMany(mappedBy = "owner")
     List<Book> books;
 

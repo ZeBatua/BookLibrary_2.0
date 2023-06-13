@@ -11,7 +11,7 @@ import jakarta.validation.constraints.Size;
 public class Book {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "book_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -30,13 +30,12 @@ public class Book {
     private int year;
 
     @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "member_id", referencedColumnName = "id")
     Member owner;
 
     public Book(){};
 
-    public Book(int id, String name, String author, int year) {
-        this.id = id;
+    public Book(String name, String author, int year) {
         this.name = name;
         this.author = author;
         this.year = year;
