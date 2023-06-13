@@ -1,6 +1,7 @@
 package crud.app.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -25,16 +26,21 @@ public class Member {
     @Pattern(regexp = "[0-9]{2}\\.[0-9]{2}\\.[0-9]{4}", message = "Используйте формат MM.DD.YYYY")
     private String birthDay;
 
+    @Column(name = "email")
+    @Email(message = "Используйте стандартные форматы email")
+    private String email;
+
+
     @OneToMany(mappedBy = "owner")
     List<Book> books;
 
     public Member() {
     }
 
-    public Member(int id, String name, String birthDay) {
-        this.id = id;
+    public Member(String name, String birthDay, String email) {
         this.name = name;
         this.birthDay = birthDay;
+        this.email = email;
     }
 
     public int getId() {
@@ -69,12 +75,21 @@ public class Member {
         this.books = books;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "Member{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", birthDay='" + birthDay + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
