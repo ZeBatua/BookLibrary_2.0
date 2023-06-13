@@ -1,10 +1,11 @@
 package crud.app.controllers;
 
-import crud.app.dao.MemberDAO;
 import crud.app.models.Book;
 import crud.app.models.Member;
+import crud.app.repositories.BookRepository;
 import crud.app.services.BookService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,12 +16,12 @@ import org.springframework.web.bind.annotation.*;
 public class BookController {
 
     private final BookService bookService;
-    private final MemberDAO memberDAO;
+    private final BookRepository bookRepository;
 
-
-    public BookController(BookService bookService, MemberDAO memberDAO) {
+    @Autowired
+    public BookController(BookService bookService, BookRepository bookRepository) {
         this.bookService = bookService;
-        this.memberDAO = memberDAO;
+        this.bookRepository = bookRepository;
     }
 
     @GetMapping()
