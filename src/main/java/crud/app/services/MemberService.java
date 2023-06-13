@@ -1,11 +1,14 @@
 package crud.app.services;
 
+import crud.app.models.Book;
 import crud.app.models.Member;
 import crud.app.repositories.MemberRepository;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,16 +44,19 @@ public class MemberService {
     }
 
     @Transactional
-    public void update(int id, Member updatedMember) {
-        updatedMember.setId(id);
-        memberRepository.save(updatedMember);
-    }
-
-    @Transactional
     public void delete(int id) {
         memberRepository.deleteById(id);
     }
 
+    public List<Book> getBooksByPersonId(int id) {
+        Optional<Member> person = memberRepository.findById(id);
+        if (person.isPresent()) {
+            Hibernate.initialize(person.get().getBooks());
+            return person.get().getBooks();
+        } else {
+            return Collections.emptyList();
+        }
+    }
 
 }
 
