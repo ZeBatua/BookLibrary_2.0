@@ -1,38 +1,53 @@
 package crud.app.models;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-public class Book {
-    private int book_id;
 
+@Entity
+@Table(name = "Book")
+public class Book {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "name")
     @NotEmpty(message = "Название книги не может быть пустым")
     @Size(min = 2, max = 100, message = "Навзание должно содержать от 2 до 100 символов")
     private String name;
 
+    @Column(name = "author")
     @NotEmpty(message = "Имя не может быть пустым")
     @Size(min = 2, max = 100, message = "Имя должно содержать от 2 до 100 символов")
     private String author;
 
+    @Column(name = "year")
     @Min(value = 1900, message = "Год рождения должен быть больше, чем 1900")
     private int year;
 
+    @ManyToOne
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    Member owner;
+
     public Book(){};
 
-    public Book(int book_id, String name, String author, int year) {
-        this.book_id = book_id;
+    public Book(int id, String name, String author, int year) {
+        this.id = id;
         this.name = name;
         this.author = author;
         this.year = year;
     }
 
-    public int getBook_id() {
-        return book_id;
+    public int getId() {
+        return id;
     }
 
-    public void setBook_id(int book_id) {
-        this.book_id = book_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -59,4 +74,25 @@ public class Book {
         this.year = year;
     }
 
+    public Member getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Member owner) {
+        this.owner = owner;
+    }
+
+    public void setMember_id(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", year=" + year +
+                '}';
+    }
 }
