@@ -4,6 +4,7 @@ import crud.app.models.Book;
 import crud.app.models.Member;
 import crud.app.repositories.BookRepository;
 import crud.app.services.BookService;
+import crud.app.services.MemberService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,13 @@ import org.springframework.web.bind.annotation.*;
 public class BookController {
 
     private final BookService bookService;
+    private final MemberService memberService;
     private final BookRepository bookRepository;
 
     @Autowired
-    public BookController(BookService bookService, BookRepository bookRepository) {
+    public BookController(BookService bookService, MemberService memberService, BookRepository bookRepository) {
         this.bookService = bookService;
+        this.memberService = memberService;
         this.bookRepository = bookRepository;
     }
 
@@ -35,11 +38,12 @@ public class BookController {
         model.addAttribute("book", bookService.findById(id));
 
         Member bookOwner = bookService.getBookOwner(id);
+        System.out.println(bookOwner);
 
         if (bookOwner != null)
             model.addAttribute("owner", bookOwner);
         else
-            model.addAttribute("memberList", bookService.findAll());
+            model.addAttribute("memberList", memberService.findAll());
 
         return "library/book/info";
     }
