@@ -5,6 +5,7 @@ import crud.app.models.Member;
 import crud.app.repositories.MemberRepository;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +26,7 @@ public class MemberService {
     }
 
     public List<Member> findAll() {
-        return memberRepository.findAll();
+        return memberRepository.findAll(Sort.by("name"));
     }
 
     public Member findOne(int id) {
