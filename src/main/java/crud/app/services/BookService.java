@@ -4,6 +4,8 @@ import crud.app.models.Book;
 import crud.app.models.Member;
 import crud.app.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,13 +23,23 @@ public class BookService {
         this.bookRepository = bookRepository;
     }
 
-    public List<Book> findAll() {
-        return bookRepository.findAll();
+    public List<Book> findAll(boolean sortByYear) {
+        if (sortByYear)
+            return bookRepository.findAll(Sort.by("year"));
+        else
+            return bookRepository.findAll(Sort.by("name"));
     }
 
     public Book findById(int id) {
         Optional<Book> foundBook = bookRepository.findById(id);
         return foundBook.orElse(null);
+    }
+
+    public List<Book> findWithPagination(Integer page, Integer booksPerPage, boolean sortByYear) {
+        if (sortByYear)
+            return bookRepository.findAll(PageRequest.of(page, booksPerPage, Sort.by("year"))).getContent();
+        else
+            return bookRepository.findAll(PageRequest.of(page, booksPerPage)).getContent();
     }
 
 //    public Member findByOwner() {
