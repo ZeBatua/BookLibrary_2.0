@@ -27,7 +27,7 @@ public class MemberValidator implements Validator {
     public void validate(Object target, Errors errors) {
         Member member = (Member) target;
 
-        if(memberDAO.getPersonByName(member.getName()).isPresent())
-            errors.rejectValue("name", "", "Уже есть человек с таким ФИО");
+//        if(memberDAO.getPersonByName(member.getName()).isPresent())
+//            errors.rejectValue("name", "", "Уже есть человек с таким ФИО");
     }
 }

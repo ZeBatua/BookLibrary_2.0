@@ -33,9 +33,9 @@ public class BookController {
                         @RequestParam(value = "sort_by_year", required = false) boolean sortByYear) {
 
         if (page == null || booksPerPage == null)
-            model.addAttribute("books", bookService.findAll(sortByYear)); // выдача всех книг
+            model.addAttribute("bookList", bookService.findAll(sortByYear)); // выдача всех книг
         else
-            model.addAttribute("books", bookService.findWithPagination(page, booksPerPage, sortByYear));
+            model.addAttribute("bookList", bookService.findWithPagination(page, booksPerPage, sortByYear));
 
         return "library/book/list";
     }

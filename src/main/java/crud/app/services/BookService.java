@@ -36,16 +36,12 @@ public class BookService {
     }
 
     public List<Book> findWithPagination(Integer page, Integer booksPerPage, boolean sortByYear) {
-        if (sortByYear)
+        if (sortByYear) {
             return bookRepository.findAll(PageRequest.of(page, booksPerPage, Sort.by("year"))).getContent();
-        else
+        } else {
             return bookRepository.findAll(PageRequest.of(page, booksPerPage)).getContent();
+        }
     }
-
-//    public Member findByOwner() {
-//        Optional<Member> findOwner = bookRepository.findByOwner();
-//        return findOwner.orElse(null);
-//    }
 
     @Transactional
     public void save(Book person) {
