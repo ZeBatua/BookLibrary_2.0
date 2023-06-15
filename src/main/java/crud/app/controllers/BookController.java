@@ -28,8 +28,15 @@ public class BookController {
     }
 
     @GetMapping()
-    public String bookList(Model model) {
-        model.addAttribute("bookList", bookService.findAll());
+    public String bookList(Model model, @RequestParam(value = "page", required = false) Integer page,
+                        @RequestParam(value = "books_per_page", required = false) Integer booksPerPage,
+                        @RequestParam(value = "sort_by_year", required = false) boolean sortByYear) {
+
+        if (page == null || booksPerPage == null)
+            model.addAttribute("books", bookService.findAll(sortByYear)); // выдача всех книг
+        else
+            model.addAttribute("books", bookService.findWithPagination(page, booksPerPage, sortByYear));
+
         return "library/book/list";
     }
 
