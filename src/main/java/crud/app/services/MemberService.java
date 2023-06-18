@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,13 +52,26 @@ public class MemberService {
 
     public List<Book> getBooksByPersonId(int id) {
         Optional<Member> person = memberRepository.findById(id);
+
         if (person.isPresent()) {
             Hibernate.initialize(person.get().getBooks());
+
+            // Проверка просроченности книг
+            person.get().getBooks().forEach(book -> {
+                long diffInMillis = Math.abs(book.getTakenAt().getTime() - new Date().getTime());
+                // 864000000 милисекунд = 10 суток
+                if (diffInMillis > 864000000)
+                    book.setExpired(true); // книга просрочена
+            });
+
             return person.get().getBooks();
-        } else {
+        }
+        else {
             return Collections.emptyList();
         }
     }
+
+
 
 }
 
