@@ -18,11 +18,17 @@
     <input type="submit" value="Добавить книгу"/>
 </form>
 
+<form th:method="GET" th:action="@{/library/books/search}">
+    <input type="submit" value="Поиск книги"/>
+</form>
+
 <br/>
 
 <form th:method="GET" th:action="@{/library/members}">
     <input type="submit" value="Смотреть пользователей"/>
 </form>
+
+
 
 </body>
 </html>
