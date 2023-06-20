@@ -1,7 +1,6 @@
 package crud.app.controllers;
 
 import crud.app.models.Member;
-import crud.app.repositories.MemberRepository;
 import crud.app.services.MemberService;
 import crud.app.util.MemberValidator;
 import jakarta.validation.Valid;
@@ -16,13 +15,11 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
 
     private final MemberService memberService;
-    private final MemberRepository memberRepository;
     private final MemberValidator memberValidator;
 
     @Autowired
-    public MemberController(MemberService memberService, MemberRepository memberRepository, MemberValidator memberValidator) {
+    public MemberController(MemberService memberService, MemberValidator memberValidator) {
         this.memberService = memberService;
-        this.memberRepository = memberRepository;
         this.memberValidator = memberValidator;
     }
 
