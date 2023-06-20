@@ -34,11 +34,6 @@
 2) Spring Data JPA
 3) Временные типы данных Java/SQL
 4) Сервсиы и репозитории
-5) Базовый HTML
-6) Класс JdbcTemplate
-7) SQL (PostgreSQL, защита от sql-инъекций, primary/foreign key, валидация)
-8) XML (контроль версий зависимостей)
-9) Валидация (@Valid и Spring Validator)
 
 ## Запуск проекта
 
